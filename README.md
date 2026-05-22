@@ -23,8 +23,8 @@ docker compose up -d --build
 
 3. 访问：
 
-- 应用：http://localhost:20418
-- 健康检查：http://localhost:20418/health
+- 应用：http://localhost:3000
+- 健康检查：http://localhost:3000/health
 
 ## GHCR 镜像
 

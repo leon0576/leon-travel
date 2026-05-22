@@ -2,30 +2,27 @@ services:
   # 数据库服务
   db:
     image: postgres:14-alpine
-    container_name: leon-travel-db
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:?请在环境变量中设置 DB_PASSWORD}
       POSTGRES_DB: leon_travel
     volumes:
-      - /Users/leon/work/travel/leon-travel-db/postgres_data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     ports:
-      - "25432:5432"
+      - "5432:5432"
     networks:
       - leon-travel-network
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER}"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   # 后端服务
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: leon-travel-backend
+    image: ghcr.io/leon0576/leon-travel-backend:latest
+    pull_policy: always
     environment:
       NODE_ENV: production
       DB_HOST: db
@@ -37,16 +34,22 @@ services:
       DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD:-}
     volumes:
       - ./frontend:/app/frontend
-      - /Users/leon/work/travel/leon-travel-db/uploads:/app/uploads
-      - /Users/leon/work/travel/leon-travel-db/img:/img
+      - uploads:/app/uploads
+      - img:/img
     ports:
-      - "20418:3000"
+      - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
     networks:
       - leon-travel-network
     restart: always
+
+# 数据卷
+volumes:
+  db-data:
+  uploads:
+  img:
 
 # 网络配置
 networks:
