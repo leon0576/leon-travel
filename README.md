@@ -26,6 +26,13 @@ docker compose up -d --build
 - 应用：http://localhost:20418
 - 健康检查：http://localhost:20418/health
 
+## GHCR 镜像
+
+项目配置了 GitHub Actions 自动构建并推送后端镜像到 GHCR：
+
+- `ghcr.io/leon0576/leon-travel-backend:latest`
+- `ghcr.io/leon0576/leon-travel-backend:sha-<commit>`
+
 ## 配置说明
 
 后端读取以下环境变量（见 `.env.example`）：
