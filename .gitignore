@@ -1,0 +1,10 @@
+.DS_Store
+*.zip
+node_modules/
+backend/uploads/
+img/
+frontend/index_副本*.html
+.env
+.env.*
+!/.env.example
+leon-travel-db/
