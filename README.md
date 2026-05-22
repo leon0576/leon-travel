@@ -1,50 +1,49 @@
 # leon-travel
 
-A lightweight travel planner with:
+一个轻量的行程规划项目，包含：
 
-- User login and profile (avatar/background, theme settings)
-- Trip creation and daily plans
-- Expense tracking and export to PDF
-- AMap integration (JS API + Web services) for routes/maps
+- 用户登录与个人资料（头像/背景、主题设置）
+- 行程创建与每日计划
+- 费用记录与导出 PDF
+- 高德地图集成（JS API + Web 服务）用于路线/地图
 
-## Quick Start (Docker)
+## 快速开始（Docker）
 
-1. Create a local env file from the example:
+1. 从示例创建本地环境变量文件：
 
 ```bash
 cp .env.example .env
 ```
 
-2. Start services:
+2. 启动服务：
 
 ```bash
 docker compose up -d --build
 ```
 
-3. Open:
+3. 访问：
 
-- App: http://localhost:20418
-- Health: http://localhost:20418/health
+- 应用：http://localhost:20418
+- 健康检查：http://localhost:20418/health
 
-## Configuration
+## 配置说明
 
-Backend reads the following env vars (see `.env.example`):
+后端读取以下环境变量（见 `.env.example`）：
 
 - `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `DB_HOST`, `DB_PORT`
-- `JWT_SECRET` (required)
-- `DEFAULT_ADMIN_PASSWORD` (optional, for first-time admin creation)
+- `JWT_SECRET`（必填）
+- `DEFAULT_ADMIN_PASSWORD`（可选：首次部署用于创建管理员）
 - `MAX_UPLOAD_SIZE`, `JSON_BODY_LIMIT`, `CORS_ORIGINS`
-- `DB_SYNC_ALTER` (development only; prefer migrations in production)
+- `DB_SYNC_ALTER`（仅建议开发环境；生产建议使用 migrations）
 
-## AMap Keys
+## 高德 Key 配置
 
-AMap keys are configured in the in-app Settings page:
+高德 Key 在应用内的“设置”页面填写：
 
-- JS API Key (Web): for loading AMap JS SDK and interactive maps
-- `securityJsCode`: optional, when enabling JS API security
-- Web service Key: for static maps / geocoding / related HTTP APIs
+- JS API Key（Web端）：用于加载高德 JS SDK 与交互式地图
+- `securityJsCode`：可选（开启 JS API 安全校验时填写）
+- Web 服务 Key：用于静态地图/地理编码等 HTTP 接口
 
 ## License
 
-MIT. See `LICENSE`.
-
+MIT，见 `LICENSE`。
