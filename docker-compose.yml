@@ -36,7 +36,7 @@ services:
       - uploads:/app/uploads
       - img:/img
     ports:
-      - "20418:3000"
+      - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
