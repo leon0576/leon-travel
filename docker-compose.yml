@@ -9,7 +9,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "15432:5432"
     networks:
       - leon-travel-network
     restart: always
@@ -36,7 +36,7 @@ services:
       - uploads:/app/uploads
       - img:/img
     ports:
-      - "3000:3000"
+      - "20418:3000"
     depends_on:
       db:
         condition: service_healthy
