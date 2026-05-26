@@ -5,13 +5,16 @@ FROM node:18-alpine
 WORKDIR /app
 
 # 复制package.json和package-lock.json文件
-COPY package*.json ./
+COPY backend/package*.json ./
 
 # 安装依赖
 RUN npm install
 
-# 复制应用代码
-COPY . .
+# 复制后端代码
+COPY backend/ .
+
+# 复制前端代码到 /app/frontend
+COPY frontend/ ./frontend/
 
 # 暴露端口
 EXPOSE 3000

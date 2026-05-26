@@ -33,7 +33,6 @@ services:
       JWT_SECRET: ${JWT_SECRET:?请在环境变量中设置 JWT_SECRET}
       DEFAULT_ADMIN_PASSWORD: ${DEFAULT_ADMIN_PASSWORD:-}
     volumes:
-      - ./frontend:/app/frontend
       - uploads:/app/uploads
       - img:/img
     ports:
